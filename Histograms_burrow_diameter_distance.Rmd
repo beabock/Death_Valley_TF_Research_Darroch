@@ -1,0 +1,41 @@
+---
+title: "Histograms of Trace Fossil Data from Death Valley"
+author: "Beatrice Rodewald"
+date: "3/15/2018"
+output: 
+  pdf_document: default
+html_document: default
+word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(inline = function(x) { knitr:::format_sci(x, 'md')})
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r diameter_hist, include=TRUE, message=FALSE}
+TF_data= read_xlsx('DV.Fossils.3.Oct.xlsx')
+avg_diameter_hist<-hist(TF_data$`Average diameter of fossils (mm)`,
+  main="Average Burrow Diameter",
+  xlab="Average Diamater (mm)",
+  border="black",
+  col="light blue",
+  breaks=4
+)
+print(avg_diameter_hist)
+
+```
+
+```{r distance_hist, include=TRUE, message=FALSE}
+avg_distance_hist<-hist(TF_data$`Average distance between fossils(mm), midpoint to midpoint`,
+  main="Average Distance between Trace Fossils",
+  xlab="Average Distance (mm)",
+  border="black",
+  col="light blue",
+  breaks=5
+)
+print(avg_distance_hist)
+
+```
