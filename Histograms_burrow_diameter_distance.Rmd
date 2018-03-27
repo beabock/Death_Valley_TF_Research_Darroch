@@ -11,6 +11,9 @@ word_document: default
 ```{r setup, include=FALSE}
 knitr::knit_hooks$set(inline = function(x) { knitr:::format_sci(x, 'md')})
 knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(ggplot2)
+library(tidyverse)
 ```
 
 
@@ -38,4 +41,14 @@ avg_distance_hist<-hist(TF_data$`Average distance between fossils(mm), midpoint 
 )
 print(avg_distance_hist)
 
+```
+
+```{r scatterplot_distance_diameter, include=TRUE, message=FALSE}
+attach(TF_data)
+plot(`Average diameter of fossils (mm)`, `Average distance between fossils(mm), midpoint to midpoint`, main="Diameters of Burrows and Distances Between Them", 
+  	xlab="Diameters (mm)", ylab="Distances (mm)", pch=19)+
+abline(lm(`Average distance between fossils(mm), midpoint to midpoint`~`Average diameter of fossils (mm)`), col="blue")
+summary(fit <- lm(`Average distance between fossils(mm), midpoint to midpoint`~`Average diameter of fossils (mm)`))
+legend("topright", bty="n", legend=paste("R2 is",
+      format(summary(fit)$adj.r.squared, digits=3)))
 ```
