@@ -20,18 +20,21 @@ library(tidyverse)
 
 ```{r diameter_hist, include=TRUE, message=FALSE}
 TF_data= read_xlsx('DV.Fossils.3.Oct.xlsx')
+pdf('avg_diameter_hist.pdf')
 avg_diameter_hist<-hist(TF_data$`Average diameter of fossils (mm)`,
   main="Average Burrow Diameter",
-  xlab="Average Diamater (mm)",
+  xlab="Average Diameter (mm)",
   border="black",
   col="light blue",
   breaks=4
 )
+dev.off()
 print(avg_diameter_hist)
 
 ```
 
 ```{r distance_hist, include=TRUE, message=FALSE}
+pdf('avg_distance_hist.pdf')
 avg_distance_hist<-hist(TF_data$`Average distance between fossils(mm), midpoint to midpoint`,
   main="Average Distance between Trace Fossils",
   xlab="Average Distance (mm)",
@@ -39,16 +42,19 @@ avg_distance_hist<-hist(TF_data$`Average distance between fossils(mm), midpoint 
   col="light blue",
   breaks=5
 )
+dev.off()
 print(avg_distance_hist)
 
 ```
 
 ```{r scatterplot_distance_diameter, include=TRUE, message=FALSE}
 attach(TF_data)
-plot(`Average diameter of fossils (mm)`, `Average distance between fossils(mm), midpoint to midpoint`, main="Diameters of Burrows and Distances Between Them", 
+pdf('scatterplot_distance_diameter.pdf')
+scatterplot_distance_diameter<- plot(`Average diameter of fossils (mm)`, `Average distance between fossils(mm), midpoint to midpoint`, main="Diameters of Burrows and Distances Between Them", 
   	xlab="Diameters (mm)", ylab="Distances (mm)", pch=19)+
 abline(lm(`Average distance between fossils(mm), midpoint to midpoint`~`Average diameter of fossils (mm)`), col="blue")
 summary(fit <- lm(`Average distance between fossils(mm), midpoint to midpoint`~`Average diameter of fossils (mm)`))
 legend("topright", bty="n", legend=paste("R2 is",
       format(summary(fit)$adj.r.squared, digits=3)))
+dev.off()
 ```
