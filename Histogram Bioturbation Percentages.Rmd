@@ -22,7 +22,7 @@ Bioturb_data <- read_excel("~/Desktop/TraceFossilResearch/Death_Valley_TF_Resear
 png('avg_bioturb_hist.png')
 avg_bioturb_hist<-hist(Bioturb_data$`Average %`,
   main="Average Percent of Bioturbation",
-  xlab="Percent Bioturbation (mm)",
+  xlab="Percent Bioturbation",
   border="black",
   col="light blue",
   breaks=5
