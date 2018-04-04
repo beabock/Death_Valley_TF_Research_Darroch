@@ -1,0 +1,32 @@
+---
+title: "Histogram_Bioturbation_Percentages"
+author: "Beatrice Rodewald"
+date: "4/4/2018"
+output: 
+  pdf_document: default
+html_document: default
+word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(inline = function(x) { knitr:::format_sci(x, 'md')})
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+```
+
+```{r bioturbation_hist, include=TRUE, message=FALSE}
+Bioturb_data= read_xlsx('Drive_data.xls')
+png('avg_bioturb_hist.png')
+avg_bioturb_hist<-hist(Bioturb_data$`Average %`,
+  main="Average Percent of Bioturbation",
+  xlab="Percent Bioturbation (mm)",
+  border="black",
+  col="light blue",
+  breaks=4
+)
+dev.off()
+print(avg_bioturb_hist)
+
+```
