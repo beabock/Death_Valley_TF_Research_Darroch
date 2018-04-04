@@ -17,14 +17,15 @@ library(tidyverse)
 ```
 
 ```{r bioturbation_hist, include=TRUE, message=FALSE}
-Bioturb_data= read_xlsx('Drive_data.xls')
+Bioturb_data <- read_excel("~/Desktop/TraceFossilResearch/Death_Valley_TF_Research_Darroch/Histogram bioturbation percentages/Drive_data (1).xls")
+
 png('avg_bioturb_hist.png')
 avg_bioturb_hist<-hist(Bioturb_data$`Average %`,
   main="Average Percent of Bioturbation",
   xlab="Percent Bioturbation (mm)",
   border="black",
   col="light blue",
-  breaks=4
+  breaks=5
 )
 dev.off()
 print(avg_bioturb_hist)
