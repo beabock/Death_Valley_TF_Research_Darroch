@@ -20,7 +20,7 @@ library(tidyverse)
 Bioturb_data <- read_excel("~/Desktop/TraceFossilResearch/Death_Valley_TF_Research_Darroch/Histogram bioturbation percentages/Drive_data (1).xls")
 
 png('avg_bioturb_hist.png')
-avg_bioturb_hist<-hist(Bioturb_data$`Average %`,
+avg_bioturb_hist<-hist(Bioturb_data$`Average %`*100,
   main="Average Percent of Bioturbation",
   xlab="Percent Bioturbation",
   border="black",
@@ -31,3 +31,4 @@ dev.off()
 print(avg_bioturb_hist)
 
 ```
+
