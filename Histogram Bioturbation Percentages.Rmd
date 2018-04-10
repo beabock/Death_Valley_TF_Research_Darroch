@@ -1,0 +1,34 @@
+---
+title: "Histogram_Bioturbation_Percentages"
+author: "Beatrice Rodewald"
+date: "4/4/2018"
+output: 
+  pdf_document: default
+html_document: default
+word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::knit_hooks$set(inline = function(x) { knitr:::format_sci(x, 'md')})
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+```
+
+```{r bioturbation_hist, include=TRUE, message=FALSE}
+Bioturb_data <- read_excel("~/Desktop/TraceFossilResearch/Death_Valley_TF_Research_Darroch/Histogram bioturbation percentages/Drive_data (1).xls")
+
+png('avg_bioturb_hist.png')
+avg_bioturb_hist<-hist(Bioturb_data$`Average %`*100,
+  main="Average Percent of Bioturbation",
+  xlab="Percent Bioturbation",
+  border="black",
+  col="light blue",
+  breaks=5
+)
+dev.off()
+print(avg_bioturb_hist)
+
+```
+
